@@ -8,11 +8,15 @@ authors = [
 ]
 requires-python = ">=3.10"
 dependencies = [
+    "arize-phoenix>=20.16.0",
     "black>=26.10.1",
     "isort>=9.0.2",
     "langchain>=1.4.9",
     "langchain-ollama>=1.1.0",
     "langchain-openai>=1.7.4",
+    "openinference-instrumentation-langchain>=0.1.82",
+    "opentelemetry-exporter-otlp>=1.45.2",
+    "opentelemetry-sdk>=1.45.2",
     "python-dotenv>=1.2.4",
 ]
 
