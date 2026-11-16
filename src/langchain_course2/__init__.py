@@ -1,6 +1,8 @@
 import os
 import subprocess
 from dotenv import load_dotenv
+from typing import List
+from pydantic import BaseModel, Field, PydanticOutputParser
 
 # 1. Importaciones directas del estándar OpenTelemetry (A prueba de balas)
 from opentelemetry.sdk.trace import TracerProvider
@@ -34,6 +36,16 @@ provider.add_span_processor(SimpleSpanProcessor(exporter))
 
 # 4. Conectamos LangChain al puente
 LangChainInstrumentor().instrument(tracer_provider=provider)
+
+class Source (BaseModel):
+    """Schema for a source used by the agent"""
+    url:str = Field (description = "The url of the source")
+
+class AgentResponse(BaseModel):
+    """Schema for the agent's response with anwer and sources"""
+    answer: str = Field(description="The agent's answer to the query")
+    sources: List[Source] = Field(default_factory=list, description="List of sources used to generate the answer")
+
 
 def hello_world() -> None:
     
@@ -105,6 +117,7 @@ llm = ChatOllama(
     base_url=url_dinamica
 )
 tools = [search]
+#agent = create_agent(model=llm, tools=tools,response_format=AgentResponse)
 agent = create_agent(model=llm, tools=tools)
 
 
