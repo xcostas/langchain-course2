@@ -14,10 +14,12 @@ dependencies = [
     "langchain>=1.4.9",
     "langchain-ollama>=1.1.0",
     "langchain-openai>=1.7.4",
+    "langchain-tavily>=0.2.18",
     "openinference-instrumentation-langchain>=0.1.82",
     "opentelemetry-exporter-otlp>=1.45.2",
     "opentelemetry-sdk>=1.45.2",
     "python-dotenv>=1.2.4",
+    "tavily-python>=0.8.5",
 ]
 
 [project.scripts]
